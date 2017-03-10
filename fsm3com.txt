@@ -1,0 +1,45 @@
+module top_module(
+    input in,
+    input [10] state,
+    output [10] next_state,
+    output out); 
+
+    parameter A=0, B=1, C=2, D=3;
+
+     State transition logic next_state = f(state, in)
+    always @()
+        begin
+        next_state=state;
+        case(state)
+        A begin
+            if(in)
+              next_state=B;
+            else
+              next_state=A;
+            end
+        Bbegin
+            if(in)
+                 next_state=B;
+              else
+                 next_state=C;
+            end 
+        C begin
+            if(in)
+                 next_state=D;
+                 else
+                  next_state=A;    
+           end
+        D begin
+            if(in)
+                 next_state=B;
+                else
+                  next_state=C;
+           end
+            
+            endcase   
+        endalways
+    
+
+     Output logic  out = f(state) for a Moore state machine
+    assign out=(state==D)1'b1 1'b0;
+endmodule
